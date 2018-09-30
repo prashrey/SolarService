@@ -16,7 +16,7 @@ public class DemoApplication {
 	@RequestMapping("/search")
 	@ResponseBody
 	String home(){
-		return "Whoa, what are you doing here! Back off!!!!";
+		return "Nice Camouflage. For a minute, I almost didn't see you.";
 	}
 
 	public static void main(String[] args) {

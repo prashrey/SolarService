@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SpringBootApplication
 public class DemoApplication {
 
-	@RequestMapping("/solar/search")
+	@RequestMapping("/search")
 	@ResponseBody
 	String home(){
-		return "Hello World!";
+		return "Whoa, what are you doing here! Back off!!!!";
 	}
 
 	public static void main(String[] args) {

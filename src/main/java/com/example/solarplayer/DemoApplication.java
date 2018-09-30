@@ -13,7 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SpringBootApplication
 public class DemoApplication {
 
-	@RequestMapping("/search")
+
+    @RequestMapping("/")
+    @ResponseBody
+    String root(){
+        return "Don't try to act smart.";
+    }
+
+    @RequestMapping("/search")
 	@ResponseBody
 	String home(){
 		return "Nice Camouflage. For a minute, I almost didn't see you.";

@@ -22,8 +22,14 @@ public class DemoApplication {
 
     @RequestMapping("/search")
 	@ResponseBody
-	String home(){
+	String search(){
 		return "Nice Camouflage. For a minute, I almost didn't see you.";
+	}
+
+	@RequestMapping("/home")
+	@ResponseBody
+	String home(){
+		return "Welcome!";
 	}
 
 	public static void main(String[] args) {

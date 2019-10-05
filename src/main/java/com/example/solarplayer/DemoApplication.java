@@ -31,7 +31,7 @@ public class DemoApplication {
 		return "Don't try to act smart.";
 	}
 
-	@RequestMapping("/search/{test}")
+	@RequestMapping("/search")
 	@ResponseBody
 	 String search() {
 		try {

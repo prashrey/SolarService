@@ -22,10 +22,7 @@ public class AlbumImpl implements Album {
     public String search(String name) {
         try {
             String URL_ALBUM_SEARCH = API_HOST + "method=album.search&album=" + name + API_KEY_NAME + API_KEY + API_FORMAT;
-            HttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet(URL_ALBUM_SEARCH);
-            HttpResponse response = client.execute(request);
-            log.info("Sending 'GET' request to URL : " , URL_ALBUM_SEARCH);
+            HttpResponse response = sendRequest(URL_ALBUM_SEARCH);
             log.info("Response Code : " , response.getStatusLine().getStatusCode());
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
             StringBuffer result = new StringBuffer();
@@ -41,12 +38,32 @@ public class AlbumImpl implements Album {
     }
 
     @Override
-    public String getInfo(String name) {
+    public String getInfo(String albumName, String artistName) {
         try {
-            String infoUrl = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key="+API_KEY+"&artist=Cher&album="+name+"&format=json"
-
+            String infoUrl = API_HOST + "method=album.getinfo" + API_KEY_NAME + API_KEY + "&artist=" + artistName + "&album="+  albumName + API_FORMAT;
+            HttpResponse response = sendRequest(infoUrl);
+            log.info("Response Code : " , response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            StringBuffer result = new StringBuffer();
+            String line = "";
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            return result.toString();
         }catch (Exception e){
             e.printStackTrace();
+        }
+        return "";
+    }
+
+    private HttpResponse sendRequest(String url) {
+        try {
+            HttpClient client = new DefaultHttpClient();
+            HttpGet request = new HttpGet(url);
+            log.info("Sending 'GET' request to URL : " , url);
+            return client.execute(request);
+        }catch (Exception e){
+            log.info("Exception occured while sending request", e);
         }
         return null;
     }

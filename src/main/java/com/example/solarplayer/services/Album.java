@@ -4,6 +4,6 @@ public interface Album {
 
     public String search(String name);
 
-    public String getInfo(String name);
+    public String getInfo(String albumName, String artistName);
 
 }
